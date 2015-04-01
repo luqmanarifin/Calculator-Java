@@ -1,0 +1,13 @@
+Equation ada convert dan calculate
+
+Command cuman ada string
+methodnya do atau execute a b c sebanyak komennya
+
+Parser itu bermain grammer
+
+Tokenizer : memisah string menjadi token (kata)
+
+nanti bikin jUnit dan jDepend
+tabel ga boleh gundul harus ada
+
+deskripsi aplikasi jangan nyontek deskripsi tugas

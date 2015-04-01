@@ -1,0 +1,22 @@
+Penggantian nama
+
+
+ClassController + Reader = Calculator
+
+Method Execute Command di ClassController = CommandProcessor (kelas baru)
+
+Log-Logger-Saver yang gak perlu = hilang
+
+
+Calculator :
+membaca string, ngasih ke command processor
+
+Command Processor :
+ngecek apakah command tersebut termasuk commmand
+ada method untuk memastikan dia command, kalo dia bukan command, return false
+
+Calculator :
+bila ternyata dapet sinyal dari command processor bahwa string bukan command, dilempar ke equation
+
+Equation :
+mengerjakan persamaan seperti biasa

@@ -1,8 +1,8 @@
-public class Saver() {
+public class Saver {
   public Saver() {
   
   }
-  public saveToFile() {
-  
+  public void saveToFile() {
+    System.out.println("Proses Save");
   }
 }

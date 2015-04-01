@@ -1,7 +1,16 @@
 NAMING Convention JAVA
 Naming convetion aja biar cara ngoding kita jadi sama
 
-Ini bagus kyaa
+Method
+- iniNamaMethod
+
+Class
+- Orang, CommandProcessor
+
+Variabel / data member private
+- iniVariabel, kacang, temporaryListener
+
+sumber bacaan menarik:
 http://geosoft.no/development/javastyle.html
 
 

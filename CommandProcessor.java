@@ -5,25 +5,10 @@ public class CommandProcessor {
   public CommandProcessor(String str) {
   
   }
-  public CommandProcessor(CommandProcessor com) {
-  
-  }
   public void undo(int n) {
   
   }
   public void redo(int n) {
-  
-  }
-  public void setExpressionMode(int mode) {
-  
-  }
-  public void setEquationMode(int mode) {
-  
-  }
-  public void setNumberMode(int mode) {
-  
-  }
-  public void resetSetting() {
   
   }
   public void showMem(int n) {
@@ -33,9 +18,6 @@ public class CommandProcessor {
   
   }
   public void help() {
-  
-  }
-  public void viewSetting() {
   
   }
   public boolean isCommand() {

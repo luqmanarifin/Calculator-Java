@@ -5,10 +5,10 @@ import java.util.*;
 public class Calculator {
   public static void main(String[] args) {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in), 32768);
-    System.out.println("Type 'Help' to show documentation\n");
+    //System.out.println("Type 'Help' to show documentation\n");
     String buffer = "";
     do {
-      System.out.print("> ");
+      //System.out.print("> ");
       try {
         buffer = reader.readLine();
         CommandProcessor com = new CommandProcessor(buffer);

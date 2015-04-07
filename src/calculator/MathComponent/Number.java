@@ -19,6 +19,7 @@ public class Number extends MathComponent {
 	private int _nilaiInt;
 	private float _nilaiFloat;
 	private boolean isFloat;
+	private boolean isRomawi;
 	
 	// konstruktor
 	public Number(){
@@ -28,13 +29,20 @@ public class Number extends MathComponent {
 		super(s);
 		StringBuffer str = new StringBuffer(".");
 		isFloat = s.contains(str);
+		isRomawi = s.matches("[0-9]+");
     if(!this.getIsOperator()) {
-      if(isFloat)
-        _nilaiFloat = Float.parseFloat(s);
-      else{
-        _nilaiInt = Integer.parseInt(s);
-        _nilaiFloat = Float.parseFloat(s);
-      }
+      if(isRomawi){
+			_nilaiInt = toInt(s);
+			_nilaiFloat = float(_nilaiInt);
+		}
+		else{
+			if(isFloat)
+				_nilaiFloat = Float.parseFloat(s);
+			else{
+				_nilaiInt = Integer.parseInt(s);
+				_nilaiFloat = Float.parseFloat(s);
+			}
+		}
     }
 	}
 	
@@ -127,14 +135,97 @@ public class Number extends MathComponent {
 			this._nilaiFloat = _n;
 		}
 	}
+	int toInt(string s){
+		int satuan = 0;
+		int puluhan = 0;
+		int ratusan = 0;
+		int ribuan = 0;
+		for (int i = 0; i <= s.length() - 1; i++){
+			if (s[i] == 'I'){
+				if(i<s.length() - 1 && (s[i+1] == 'X' || s[i+1] == 'V')){
+				
+				}
+				else satuan++;
+			}
+			if (s[i] == 'V'){
+				if (s[i-1] == 'I') satuan += 4;
+				else satuan += 5;
+			}
+			if (s[i] == 'X'){
+				if(s[i-1] == 'I') puluhan+=9;
+				else if(i<s.length() - 1 && (s[i+1] == 'L' || s[i+1] == 'C')){
+				
+				}
+				else puluhan+=10;
+			}
+			if (s[i] == 'L'){
+				if(s[i-1] == 'X') puluhan+=40;
+				else puluhan+=50;
+			}
+			if (s[i] == 'C'){
+				if(s[i-1] == 'X') ratusan+=90;
+				else if(i<s.length() - 1 && (s[i+1] == 'D' || s[i+1] == 'M')){
+				
+				}
+				else ratusan+=100;
+			}
+			if (s[i] == 'D'){
+				if(s[i-1] == 'C') ratusan += 400;
+				else ratusan += 500;
+			}
+			if (s[i] == 'M'){
+				if(s[i-1] == 'C') ribuan+=900;
+				else ribuan+=1000;
+			}
+		}
+		int nilai = ribuan + ratusan + puluhan + satuan;
+		return nilai;
+	}
   @Override
 	public String toString() {
 		String ret;
-		if(this.isFloat){
-			ret = String.format("%.2f", this._nilaiFloat);
+		if(isRomawi){
+			StringBuffer strTemp = new StringBuffer("");
+			char rom[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M', '#', '#'};
+			int x = n, y, z = 1000;
+			for(int i = 6; i>=0; i -= 2) {
+				y = x/z;
+				x %= z;
+				z /= 10;
+				switch(y) {
+				  case 3 : strTemp.append(rom[i]);
+				  case 2 : strTemp.append(rom[i]);
+				  case 1 : strTemp.append(rom[i]);
+						   break;
+				  case 4 : strTemp.append(rom[i]);
+				  case 5 : strTemp.append(rom[i+1]);
+						   break;
+				  case 6 : strTemp.append(rom[i+1]);
+						   strTemp.append(rom[i]);
+						   break;
+				  case 7 : strTemp.append(rom[i+1]);
+						   strTemp.append(rom[i]);
+						   strTemp.append(rom[i]);
+						   break;
+				  case 8 : strTemp.append(rom[i+1]);
+						   strTemp.append(rom[i]);
+						   strTemp.append(rom[i]);
+						   strTemp.append(rom[i]);
+						   break;
+				  case 9 : strTemp.append(rom[i]);
+						   strTemp.append(rom[i+2]);
+				}
+			}
+			ret = strTemp;
 		}
 		else{
-			ret = Integer.toString(this._nilaiInt);
+			if(this.isFloat){
+				ret = String.format("%.2f", this._nilaiFloat);
+				ret = ret.replace(",",".");
+			}
+			else{
+				ret = Integer.toString(this._nilaiInt);
+			}
 		}
 		return ret;
 	}

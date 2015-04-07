@@ -1,6 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package MathComponent;
+
 import java.io.*;
 import java.lang.*;
 
+/**
+ *
+ * @author Luqman A. Siswanto
+ */
 public class MathComponent {
   public MathComponent(String S) {
     symComp = S;

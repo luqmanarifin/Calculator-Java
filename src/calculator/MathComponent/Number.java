@@ -33,7 +33,7 @@ public class Number extends MathComponent {
     if(!this.getIsOperator()) {
       if(isRomawi){
 			_nilaiInt = toInt(s);
-			_nilaiFloat = float(_nilaiInt);
+			_nilaiFloat = (float)_nilaiInt;
 		}
 		else{
 			if(isFloat)
@@ -135,7 +135,7 @@ public class Number extends MathComponent {
 			this._nilaiFloat = _n;
 		}
 	}
-	int toInt(string s){
+	int toInt(String s){
 		int satuan = 0;
 		int puluhan = 0;
 		int ratusan = 0;

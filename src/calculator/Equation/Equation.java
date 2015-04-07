@@ -11,14 +11,14 @@ import calculator.MathComponent.*;
 import calculator.MathComponent.Number;
 
 /**
-* @class Equation
+*  Equation <br>
+*  Description <br>
+*  Kelas Equation bertanggung jawab dalam perhutingan hasil ekspresi 
+*        matematika ataupun logika dalam bentuk prefix. Kelas Equation merupakan
+*        inheritent dari kelas Expression.
 * @author Wiwit Rifa'i (13513073)
 * @version 1.0
 * 
-* @section Description
-* @brief Kelas Equation bertanggung jawab dalam perhutingan hasil ekspresi 
-*        matematika ataupun logika dalam bentuk prefix. Kelas Equation merupakan
-*        inheritent dari kelas Expression.
 **/
 public class Equation {
   /** PREFIX adalah konstanta yang menandakan menggunakan mode prefix */
@@ -40,7 +40,7 @@ public class Equation {
   private Stack<MathComponent> stackMathComponents_;
   
   /**
-  * @brief Konstruktor kelas Equation.
+  *  Konstruktor kelas Equation.
   **/
   public Equation() {
     
@@ -50,9 +50,9 @@ public class Equation {
     modeEquation_ = EQUATION_INFIX;
   }
   /**
-  * @brief Konstruktor kelas Equation dengan parameter.
+  *  Konstruktor kelas Equation dengan parameter.
   * 
-  * @param int strEqin        String yang merepresentasikan ekspresi matematika 
+  * @param strEqin        String yang merepresentasikan ekspresi matematika 
   *                           atau logika yang akan dikelola.
   **/
   public Equation(String strEqin) {
@@ -67,7 +67,7 @@ public class Equation {
     modeEquation_ = EQUATION_PREFIX;
   }
   /**
-  * @brief Mendapatkan hasil perhitungan dari ekspresi
+  *  Mendapatkan hasil perhitungan dari ekspresi
   * 
   * @return String _result - String yang merepresentasikan hasil perhitungan
   **/
@@ -82,7 +82,7 @@ public class Equation {
     return result_;
   }
   /**
-  * @brief Menghitung hasil ekspresi matematika tersebut
+  *  Menghitung hasil ekspresi matematika tersebut
   *        Prekondisi : ekspresi dalam bentuk prefiks
   */
   public void solve() {
@@ -197,7 +197,7 @@ public class Equation {
     result_ = res.peek().toString();
   }
   /*
-  * @brief Menghitung operasi bilangan yaitu untuk operator (+), (-), (), dan (/).
+  *  Menghitung operasi bilangan yaitu untuk operator (+), (-), (), dan (/).
   * 
   * @param Number operan1 - pointer pada operan bilangan pertama
   * @param MathComponent operator - pointer pada operator bilangan
@@ -237,7 +237,7 @@ public class Equation {
     return ret;
   }
   /*
-  * @brief Menghitung operasi logika yaitu untuk operator (&), (|), dan (^).
+  *  Menghitung operasi logika yaitu untuk operator (&), (|), dan (^).
   * 
   * @param Logic operan1 - pointer pada operan logika pertama
   * @param MathComponent operator - pointer pada operator logika
@@ -270,7 +270,7 @@ public class Equation {
     return ret;
   }
   /*
-  * @brief Menghitung operasi relasional pada bilangan yaitu untuk operator (<), 
+  *  Menghitung operasi relasional pada bilangan yaitu untuk operator (<), 
   *        (<=), (>), (>=), (=) dan (!=).
   *
   * @param Number operan1 - pointer pada operan bilangan pertama
@@ -298,7 +298,7 @@ public class Equation {
     return ret;
   }
   /*
-  * @brief Mengubah string ekspresi dan mengubahnya menjadi token-token yang 
+  *  Mengubah string ekspresi dan mengubahnya menjadi token-token yang 
   *        disimpan dalam stack.
   * @param string strEq - string ekspresi yang akan diubah menjadi token-token 
   *                       yang addressnya disimpan dalam stack.

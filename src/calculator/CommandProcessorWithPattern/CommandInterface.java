@@ -6,9 +6,18 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * Interface Command merupakan <i> interface </i> untuk kelas-kelas yang
+ * mengimplementasi Command Interface <br> <br>
+ * Interface digunakan supaya ada standardisasi method pada kelas-kelas yang
+ * menjadi eksekutor command
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public interface CommandInterface {
+  /**
+   * Mengeksekusi perintah
+   * @param n parameter eksekutor berupa integer
+   */
   void execute(int n);
 }

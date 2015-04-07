@@ -10,22 +10,22 @@ import java.util.Stack;
 import calculator.MathComponent.*;
 
 /**
-* @class Expression
+*  Expression
 * @author Wiwit Rifa'i (13513073)
 * @version 1.0
 * 
-* @section Description
-* @brief Kelas Expression bertanggung jawab dalam mengolah ekspresi matematika atau logika seperti mengubah string menjadi ekspresi matematika dan mengubah bentuk infix atau postfix menjadi prefix agar bisa dihitung di class Equation.
+*  Description
+*  Kelas Expression bertanggung jawab dalam mengolah ekspresi matematika atau logika seperti mengubah string menjadi ekspresi matematika dan mengubah bentuk infix atau postfix menjadi prefix agar bisa dihitung di class Equation.
 **/
 public class EquationPrefixConverter {
   /**
-  * @brief Konstruktor kelas Expression.
+  *  Konstruktor kelas Expression.
   **/
   public EquationPrefixConverter() {
     
   }
   /**
-  * @brief Mengubah keterurutan token-token pada stack _stackToken dari ekspresi infix menjadi ekspresi prefix.
+  *  Mengubah keterurutan token-token pada stack _stackToken dari ekspresi infix menjadi ekspresi prefix.
   **/
   public static void convertFromInfix(Stack<MathComponent> stackMathComponents_) {
     /* mengubah ekspresi infix menjadi prefix */
@@ -76,7 +76,7 @@ public class EquationPrefixConverter {
     }
   }
   /**
-  * @brief Mengubah keterurutan MathComponent-MathComponent pada stack stackMathComponents_ dari ekspresi postfix menjadi ekspresi prefix.
+  *  Mengubah keterurutan MathComponent-MathComponent pada stack stackMathComponents_ dari ekspresi postfix menjadi ekspresi prefix.
   **/
   public static void convertFromPostfix(Stack<MathComponent> _stackToken) {
     /* mengubah ekspresi postfix menjadi prefix */

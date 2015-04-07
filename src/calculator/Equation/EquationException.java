@@ -7,12 +7,12 @@ package calculator.Equation;
 
 
 /**
-* @class EquationException
+*  EquationException
 * @author Wiwit Rifa'i (13513073)
 * @version 1.0
 * 
-* @section Description
-* @brief kelas EquationException merupakan kelas mengurusi exception pada equation.
+*  Description
+*  kelas EquationException merupakan kelas mengurusi exception pada equation.
 **/
 public class EquationException extends Exception {
   private static int num_ex_ = 0;       // banyaknya exception yang telah terjadi.
@@ -26,34 +26,34 @@ public class EquationException extends Exception {
                                      };
   // Konstanta
   /**
-  * @brief konstanta yang menandakan nilai romawi diluar batas [1..3999]
+  *  konstanta yang menandakan nilai romawi diluar batas [1..3999]
   **/
   public final static int OutOfBoundRomawi       = 0;
   /**
-  * @brief konstanta yang menandakan pembagian dengan nol.
+  *  konstanta yang menandakan pembagian dengan nol.
   **/  
   public final static int DivideByZero           = 1;
   /**
-  * @brief konstanta yang menandakan modulo dengan bilangan yang tak positif.
+  *  konstanta yang menandakan modulo dengan bilangan yang tak positif.
   **/  
   public final static int ModuloByNonPositif     = 2;
   /**
-  * @brief konstanta yang menandakan operator yang tidak diperbolehkan.
+  *  konstanta yang menandakan operator yang tidak diperbolehkan.
   **/  
   public final static int UndefinedOperator      = 3;
   /**
-  * @brief konstanta yang menandakan penggunaan operator yang tidak sesuai.
+  *  konstanta yang menandakan penggunaan operator yang tidak sesuai.
   **/  
   public final static int IllegalUsingOperator   = 4;
   /**
-  * @brief konstanta yang menandakan program mencoba menyelesaikan Equation kosong.
+  *  konstanta yang menandakan program mencoba menyelesaikan Equation kosong.
   **/  
   public final static int EmptyEquation          = 5;
   
   //ctor
   /**
-  * @brief Konstruktor kelas EquationException.
-  * @param int - menyatakan jenis error yang terjadi.
+  *  Konstruktor kelas EquationException.
+  * @param id menyatakan jenis error yang terjadi.
   **/
   public EquationException(int id) {
     super(message_[id]);
@@ -61,8 +61,8 @@ public class EquationException extends Exception {
     num_ex_++;
   }
   /**
-  * @brief Copy finalructor kelas EquationException.
-  * @param final EquationException& - reference objek yang akan di copy;
+  *  Copy constructor kelas EquationException.
+  * @param s EquationException - reference objek yang akan di copy;
   **/
   public EquationException(EquationException s) {
     msg_id_ = s.msg_id_;
@@ -70,19 +70,19 @@ public class EquationException extends Exception {
   
   //method
   /**
-  * @brief Getter banyaknya exception yang telah terjadi.
+  *  Getter banyaknya exception yang telah terjadi.
   **/  
   public static int getNumOfException() {
     return num_ex_;
   }
   /**
-  * @brief Getter nilai ID kesalahan.
+  *  Getter nilai ID kesalahan.
   **/  
   public final int getID() {
     return msg_id_;
   }
   /**
-  * @brief Getter pesan kesalahan.
+  *  Getter pesan kesalahan.
   **/
   public String getMessage() {
     return message_[msg_id_];

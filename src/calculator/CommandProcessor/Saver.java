@@ -6,13 +6,21 @@
 package calculator.CommandProcessor;
 
 /**
- *
+ * Kelas Saver bertanggung jawab dalam pemrosesan command Save
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class Saver {
+  /**
+   * Default konstruktor
+   */
   public Saver() {
   
   }
+  /**
+   * Melakukan eksekusi perintah Save
+   */
   public void saveToFile() {
     System.out.println("Proses Save");
   }

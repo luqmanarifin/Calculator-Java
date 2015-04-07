@@ -6,6 +6,7 @@
 package calculator.java;
 
 import calculator.CommandProcessorWithPattern.*;
+import calculator.Equation.*;
 import java.io.*;
 import java.lang.*;
 
@@ -29,15 +30,15 @@ public class CalculatorJava {
         CommandProcessor com = new CommandProcessor(buffer);
         if(com.isCommand()) {
           com.executeCommand();
-        } else { /*
-          try {
+        } else { 
+//          try {
             Equation solver = new Equation(buffer);
             System.out.println(solver.getResult());
-          } catch(EquationException e) {
-            if(e.getID() != EquationException.EmptyEquation) {
-              System.println("\nException : " + e.getMessage());
-            }
-          } */
+//          } catch(EquationException e) {
+//            if(e.getID() != EquationException.EmptyEquation) {
+//              System.out.println("\nException : " + e.getMessage());
+//            }
+//          } 
         }
       } catch(Exception e) {
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MathComponent;
+package calculator.MathComponent;
 
 import java.io.*;
 import java.lang.*;
@@ -13,6 +13,7 @@ import java.util.*;
  *
  * @author Luqman A. Siswanto
  */
+
 public class Logic extends MathComponent {
   public Logic() {
     super("FALSE");
@@ -22,6 +23,11 @@ public class Logic extends MathComponent {
   public Logic(String s) {
     super(s);
     logic = toInt(s);
+  }
+  
+  public Logic(boolean b) {
+    super(b ? "TRUE" : "FALSE");
+    logic = b ? 1 : 0;
   }
 
   public int getLogic() {
@@ -33,7 +39,7 @@ public class Logic extends MathComponent {
   }
 
   public Logic notOperation() {
-    return (new Logic(toString(~logic)));
+    return (new Logic(toString(1 - logic)));
   }
 
   public Logic andOperation(Logic L) {
@@ -47,21 +53,47 @@ public class Logic extends MathComponent {
   public Logic xorOperation(Logic L) {
     return (new Logic(toString((logic) ^ (L.logic))));
   }
+  // relasional operation
+	public Logic isLess (Logic L) {
+		return new Logic(logic < L.logic);
+	}
+	public Logic isLessOrEqual (Logic L) {
+		return new Logic(logic <= L.logic);
+	}
+	public Logic isGreater (Logic L) {
+		return new Logic(logic > L.logic);
+	}
+	public Logic isGreaterOrEqual(Logic L) {
+		return new Logic(logic >= L.logic);
+	}
+	public Logic isEqual (Logic L) {
+		return new Logic(logic == L.logic);
+	}
+	public Logic isNotEqual (Logic L) {
+		return new Logic(logic != L.logic);
+	}
   
   public int toInt(String s) {
     if(s.equals("FALSE") || s.equals("false"))
-    return 0;
+      return 0;
     return 1;
   }
 
   public String toString(int n) {
     String ret;
-    if(n == 1)
+    if(n >= 1)
       ret = (String) "TRUE";
     else
      ret = (String) "FALSE";
     return ret;
   }
-  
+  @Override
+  public String toString() {
+    return (logic >= 1) ? "TRUE" : "FALSE";
+  }/*
+  public static void main(String[] args) {
+    Logic L = new Logic(true);
+    System.out.println(L.notOperation());
+  }*/
   private int logic;
 }

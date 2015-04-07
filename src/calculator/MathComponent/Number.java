@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MathComponent;
+package calculator.MathComponent;
 
 import java.io.*;
 import java.lang.*;
@@ -13,7 +13,8 @@ import java.util.*;
  *
  * @author Luqman A. Siswanto
  */
-public class Number extends MathComponent{
+
+public class Number extends MathComponent {
 	// attribut
 	private int _nilaiInt;
 	private float _nilaiFloat;
@@ -26,21 +27,23 @@ public class Number extends MathComponent{
 	public Number(String s){
 		super(s);
 		StringBuffer str = new StringBuffer(".");
-		isFloat = s.contentEquals(str);
-		if(isFloat)
-			_nilaiFloat = Float.parseFloat(s);
-		else{
-			_nilaiInt = Integer.parseInt(s);
-			_nilaiFloat = Float.parseFloat(s);
-		}
+		isFloat = s.contains(str);
+    if(!this.getIsOperator()) {
+      if(isFloat)
+        _nilaiFloat = Float.parseFloat(s);
+      else{
+        _nilaiInt = Integer.parseInt(s);
+        _nilaiFloat = Float.parseFloat(s);
+      }
+    }
 	}
 	
 	// method
-	/*public Logic isLess (Number N) {
+	public Logic isLess (Number N) {
 		Logic L = new Logic(_nilaiFloat < N._nilaiFloat);
 		return L;
 	}
-	public Logic isLessThanEqual (Number N) {
+	public Logic isLessOrEqual (Number N) {
 		Logic L = new Logic(_nilaiFloat <= N._nilaiFloat);
 		return L;
 	}
@@ -48,18 +51,18 @@ public class Number extends MathComponent{
 		Logic L = new Logic(_nilaiFloat > N._nilaiFloat);
 		return L;
 	}
-	public Logic isGreaterThanEqual(Number N) {
-		Logic& L = new Logic(_nilaiFloat >= N._nilaiFloat);
+	public Logic isGreaterOrEqual(Number N) {
+		Logic L = new Logic(_nilaiFloat >= N._nilaiFloat);
 		return L;
 	}
 	public Logic isEqual (Number N) {
-		Logic& L = new Logic(_nilaiFloat == N._nilaiFloat);
+		Logic L = new Logic(_nilaiFloat == N._nilaiFloat);
 		return L;
 	}
 	public Logic isNotEqual (Number N) {
 		Logic L = new Logic(_nilaiFloat != N._nilaiFloat);
 		return L;
-	}*/
+	}
 	public Number plus (Number _N){
 		this.isFloat |= _N.isFloat;
 		if(!this.isFloat){
@@ -124,7 +127,8 @@ public class Number extends MathComponent{
 			this._nilaiFloat = _n;
 		}
 	}
-	String toString(int n) {
+  @Override
+	public String toString() {
 		String ret;
 		if(this.isFloat){
 			ret = String.format("%.2f", this._nilaiFloat);

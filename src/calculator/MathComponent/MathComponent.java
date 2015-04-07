@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MathComponent;
+package calculator.MathComponent;
 
 import java.io.*;
 import java.lang.*;
@@ -13,6 +13,9 @@ import java.lang.*;
  * @author Luqman A. Siswanto
  */
 public class MathComponent {
+  public static final String[] numberOperator = {"mod", "div",   "*",   "/", "+",  "-"};
+  public static final String[] relationalOperator = {"<",  "<=",   ">",  ">=", "=", "<>"};
+  public static final String[] logicOperator = {"not", "and", "xor", "or"};
   public MathComponent(String S) {
     symComp = S;
     isOperator = identifyComp();
@@ -23,7 +26,7 @@ public class MathComponent {
     return symComp;
   }
 
-  public Boolean getIsOperator() {
+  public boolean getIsOperator() {
     return isOperator;
   }
 
@@ -37,34 +40,44 @@ public class MathComponent {
     return prior;
   }
 
-  private Boolean identifyComp() {
-    if (((symComp.charAt(0) == '-') || (symComp.charAt(0) == '+')) && (symComp.length() > 1))
+  private boolean identifyComp() {
+    for(String s : numberOperator)
+      if(symComp.equals(s))
+        return true;
+    for(String s : relationalOperator)
+      if(symComp.equals(s))
+        return true;
+    for(String s : logicOperator)
+      if(symComp.equals(s))
+        return true;
+    if(symComp.equals("(") || symComp.equals(")"))
+      return true;
     return false;
-  else
-    return (symComp.charAt(0) < '0' || symComp.charAt(0) > '9') && (symComp.charAt(0) < 'A' || symComp.charAt(0) > 'Z') && (symComp.charAt(0) < 'a' || symComp.charAt(0) > 'z');
   }
 
   private void identifyPrior() {
     if (isOperator) {
     /* Prioritas operator relatif berdasarkan http://en.wikipedia.org/wiki/Order_of_operations */
-    /* operator number to number */
-    if (symComp.equals("*") || symComp.equals("/") || symComp.equals("mod") || symComp.equals("div"))
+    /* operator number */
+    if (symComp.equals(numberOperator[0]) || symComp.equals(numberOperator[1]) ||
+        symComp.equals(numberOperator[2]) || symComp.equals(numberOperator[3]))
       prior = 10;
-    else if (symComp.equals("+") || symComp.equals("-"))
+    else if (symComp.equals(numberOperator[4]) || symComp.equals(numberOperator[5]))
       prior = 9;
-    /* operator number to logic */
-    else if (symComp.equals("<") || symComp.equals("<=") || symComp.equals(">") || symComp.equals(">="))
+    /* operator relational */
+    else if (symComp.equals(relationalOperator[0]) || symComp.equals(relationalOperator[1]) ||
+             symComp.equals(relationalOperator[2]) || symComp.equals(relationalOperator[3]))
       prior = 8;
-    else if (symComp.equals("=") || symComp.equals("<>"))
+    else if (symComp.equals(relationalOperator[4]) || symComp.equals(relationalOperator[5]))
       prior = 7;
-    /* operator logic to logic */
-    else if (symComp.equals("not"))
+    /* operator logic */
+    else if (symComp.equals(logicOperator[0]))
       prior = 6;
-    else if (symComp.equals("and"))
+    else if (symComp.equals(logicOperator[1]))
       prior = 5;
-    else if (symComp.equals("xor"))
+    else if (symComp.equals(logicOperator[2]))
       prior = 4;
-    else if(symComp.equals("or"))
+    else if(symComp.equals(logicOperator[3]))
       prior = 3;
     else
       prior = 2;
@@ -76,6 +89,6 @@ public class MathComponent {
   }
 
   private String symComp;
-  private Boolean isOperator;
+  private boolean isOperator;
   private int prior;
 }

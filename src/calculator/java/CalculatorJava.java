@@ -39,7 +39,7 @@ public class CalculatorJava {
             }
           } */
         }
-      } catch(IOException e) {
+      } catch(Exception e) {
         
       }
     } while(!buffer.equals("Exit"));

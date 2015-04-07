@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculator.jUnit.CommandProcessor;
+package jUnit.CommandProcessor;
 
-import calculator.CommandProcessor.Logger;
+import calculator.CommandProcessor.Saver;
 import java.io.*;
 import org.junit.Assert;
 import org.junit.After;
@@ -16,11 +16,11 @@ import org.junit.Test;
  *
  * @author Luqman A. Siswanto
  */
-public class LoggerTest {
+public class SaverTest {
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
   
-  Logger logger = new Logger();
+  Saver saver = new Saver();
   
   @Before
   public void setUpStreams() {
@@ -35,26 +35,8 @@ public class LoggerTest {
   }
   
   @Test
-  public void undoTest() {
-    logger.undo(5);
-    Assert.assertEquals("Proses Undo 5", outContent.toString());
-  }
-  
-  @Test
-  public void redoTest() {
-    logger.redo(5);
-    Assert.assertEquals("Proses Redo 5", outContent.toString());
-  }
-  
-  @Test
-  public void showMemTest() {
-    logger.showMem(5);
-    Assert.assertEquals("Proses ShowMem 5", outContent.toString());
-  }
-  
-  @Test
-  public void showMemAllTest() {
-    logger.showMemAll();
-    Assert.assertEquals("Proses Show All", outContent.toString());
+  public void saveTest() {
+    saver.saveToFile();
+    Assert.assertEquals("Proses Save", outContent.toString());
   }
 }

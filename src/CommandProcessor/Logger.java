@@ -23,6 +23,6 @@ public class Logger {
     System.out.println("Proses ShowMem " + n);
   }
   public void showMemAll() {
-    System.out.println("Proses ShowMem Semua");
+    System.out.println("Proses Show All");
   }
 }

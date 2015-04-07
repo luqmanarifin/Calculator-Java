@@ -22,6 +22,6 @@ public class Saver {
    * Melakukan eksekusi perintah Save
    */
   public void saveToFile() {
-    System.out.println("Proses Save");
+    System.out.print("Proses Save\n");
   }
 }

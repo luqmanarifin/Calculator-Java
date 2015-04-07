@@ -24,26 +24,26 @@ public class Logger {
    * @param n jumlah perintah yang akan di-Undo
    */
   public void undo(int n) {
-    System.out.println("Proses Undo " + n);
+    System.out.print("Proses Undo " + n + "\n");
   }
   /**
    * Melakukan eksekusi perintah Redo
    * @param n jumlah perintah yang akan di-Redo
    */
   public void redo(int n) {
-    System.out.println("Proses Redo " + n);
+    System.out.print("Proses Redo " + n + "\n");
   }
   /**
    * Melakukan eksekusi perintah Show Mem
    * @param n jumlah perintah yang akan ditampilkan di layar
    */
   public void showMem(int n) {
-    System.out.println("Proses ShowMem " + n);
+    System.out.print("Proses ShowMem " + n + "\n");
   }
   /**
    * Melakukan eksekusi perintah Show All
    */
   public void showMemAll() {
-    System.out.println("Proses Show All");
+    System.out.print("Proses Show All\n");
   }
 }

@@ -26,12 +26,12 @@ public class Number extends MathComponent {
 		super("0");
 	}
 	public Number(String s){
-		super(s);
-		StringBuffer str = new StringBuffer(".");
-		isFloat = s.contains(str);
-		isRomawi = s.matches("[0-9]+");
-    if(!this.getIsOperator()) {
-      if(isRomawi){
+            super(s);
+            StringBuffer str = new StringBuffer(".");
+            isFloat = s.contains(str);
+            isRomawi = s.matches("[0-9]+");
+            if(!this.getIsOperator()) {
+                if(isRomawi){
 			_nilaiInt = toInt(s);
 			_nilaiFloat = (float)_nilaiInt;
 		}
@@ -43,8 +43,8 @@ public class Number extends MathComponent {
 				_nilaiFloat = Float.parseFloat(s);
 			}
 		}
-    }
-	}
+            }
+        }
 	
 	// method
 	public Logic isLess (Number N) {
@@ -141,40 +141,40 @@ public class Number extends MathComponent {
 		int ratusan = 0;
 		int ribuan = 0;
 		for (int i = 0; i <= s.length() - 1; i++){
-			if (s[i] == 'I'){
-				if(i<s.length() - 1 && (s[i+1] == 'X' || s[i+1] == 'V')){
+			if (s.charAt(i) == 'I'){
+				if(i<s.length() - 1 && (s.charAt(i+1) == 'X' || s.charAt(i+1) == 'V')){
 				
 				}
 				else satuan++;
 			}
-			if (s[i] == 'V'){
-				if (s[i-1] == 'I') satuan += 4;
+			if (s.charAt(i) == 'V'){
+				if (s.charAt(i-1) == 'I') satuan += 4;
 				else satuan += 5;
 			}
-			if (s[i] == 'X'){
-				if(s[i-1] == 'I') puluhan+=9;
-				else if(i<s.length() - 1 && (s[i+1] == 'L' || s[i+1] == 'C')){
+			if (s.charAt(i) == 'X'){
+				if(s.charAt(i-1) == 'I') puluhan+=9;
+				else if(i<s.length() - 1 && (s.charAt(i+1) == 'L' || s.charAt(i+1) == 'C')){
 				
 				}
 				else puluhan+=10;
 			}
-			if (s[i] == 'L'){
-				if(s[i-1] == 'X') puluhan+=40;
+			if (s.charAt(i) == 'L'){
+				if(s.charAt(i-1) == 'X') puluhan+=40;
 				else puluhan+=50;
 			}
-			if (s[i] == 'C'){
-				if(s[i-1] == 'X') ratusan+=90;
-				else if(i<s.length() - 1 && (s[i+1] == 'D' || s[i+1] == 'M')){
+			if (s.charAt(i) == 'C'){
+				if(s.charAt(i-1) == 'X') ratusan+=90;
+				else if(i<s.length() - 1 && (s.charAt(i+1) == 'D' || s.charAt(i+1) == 'M')){
 				
 				}
 				else ratusan+=100;
 			}
-			if (s[i] == 'D'){
-				if(s[i-1] == 'C') ratusan += 400;
+			if (s.charAt(i+1) == 'D'){
+				if(s.charAt(i-1) == 'C') ratusan += 400;
 				else ratusan += 500;
 			}
-			if (s[i] == 'M'){
-				if(s[i-1] == 'C') ribuan+=900;
+			if (s.charAt(i) == 'M'){
+				if(s.charAt(i-1) == 'C') ribuan+=900;
 				else ribuan+=1000;
 			}
 		}
@@ -187,7 +187,7 @@ public class Number extends MathComponent {
 		if(isRomawi){
 			StringBuffer strTemp = new StringBuffer("");
 			char rom[] = { 'I', 'V', 'X', 'L', 'C', 'D', 'M', '#', '#'};
-			int x = n, y, z = 1000;
+			int x = _nilaiInt, y, z = 1000;
 			for(int i = 6; i>=0; i -= 2) {
 				y = x/z;
 				x %= z;
@@ -216,7 +216,7 @@ public class Number extends MathComponent {
 						   strTemp.append(rom[i+2]);
 				}
 			}
-			ret = strTemp;
+			ret = new String(strTemp);
 		}
 		else{
 			if(this.isFloat){

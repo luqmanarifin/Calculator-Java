@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommandProcessorWithPattern;
+package calculator.CommandProcessor;
 
 /**
  *
  * @author Luqman A. Siswanto
  */
-public class Invoker {
-  public Invoker() {
-    
+public class Saver {
+  public Saver() {
+  
   }
-  public void invoke(CommandInterface cmd, int n) {
-    cmd.execute(n);
+  public void saveToFile() {
+    System.out.println("Proses Save");
   }
 }

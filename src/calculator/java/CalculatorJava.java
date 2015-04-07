@@ -5,7 +5,7 @@
  */
 package calculator.java;
 
-import CommandProcessorWithPattern.*;
+import calculator.CommandProcessorWithPattern.*;
 import java.io.*;
 import java.lang.*;
 

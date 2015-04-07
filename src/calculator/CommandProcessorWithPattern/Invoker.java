@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommandProcessorWithPattern;
+package calculator.CommandProcessorWithPattern;
 
 /**
  *
  * @author Luqman A. Siswanto
  */
-public class ShowMemAllCommand implements CommandInterface {
-  public ShowMemAllCommand() {
+public class Invoker {
+  public Invoker() {
     
   }
-  @Override
-  public void execute(int n) {
-    System.out.println("Proses Show All");
+  public void invoke(CommandInterface cmd, int n) {
+    cmd.execute(n);
   }
 }

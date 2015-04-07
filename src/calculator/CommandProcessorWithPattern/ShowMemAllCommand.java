@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommandProcessorWithPattern;
+package calculator.CommandProcessorWithPattern;
 
 /**
  *
  * @author Luqman A. Siswanto
  */
-public class RedoCommand implements CommandInterface {
-  public RedoCommand() {
+public class ShowMemAllCommand implements CommandInterface {
+  public ShowMemAllCommand() {
     
   }
   @Override
   public void execute(int n) {
-    System.out.println("Proses Redo " + n);
+    System.out.println("Proses Show All");
   }
 }

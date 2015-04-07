@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CommandProcessorWithPattern;
+package calculator.CommandProcessorWithPattern;
 
 /**
  *
  * @author Luqman A. Siswanto
  */
-public class SaveCommand implements CommandInterface {
-  public SaveCommand() {
+public class UndoCommand implements CommandInterface {
+  public UndoCommand() {
     
   }
   @Override
   public void execute(int n) {
-    System.out.println("Proses Save");
+    System.out.println("Proses Undo " + n);
   }
 }

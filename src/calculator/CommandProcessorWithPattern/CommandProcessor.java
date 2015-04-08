@@ -9,8 +9,10 @@ import java.util.*;
 import java.lang.*;
 
 /**
- *
+ * Command Processor adalah pemroses command menggunakan design pattern
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class CommandProcessor {
   static final String[] commands = {"Save",
@@ -20,12 +22,23 @@ public class CommandProcessor {
                                     "Help",
                                     "Exit" };
   String command;
+  /**
+   * Default konstruktor untuk commandProcessor
+   */
   public CommandProcessor() {
-    
+    command = "";
   }
+  /**
+   * Konstuktor dengan param
+   * @param cmd String yang akan diproses perintahnya
+   */
   public CommandProcessor(String cmd) {
     command = cmd;
   }
+  /**
+   * Melakukan eksekusi command dengan meng-invoke invoker
+   * bergantung dengan kelas yang bertanggung-jawab
+   */
   public void executeCommand() {
     CommandInterface redo = new RedoCommand();
     CommandInterface undo = new UndoCommand();
@@ -60,6 +73,9 @@ public class CommandProcessor {
       assert word.equals(commands[5]);
     }
   }
+  /**
+   * Menampilkan command apa saja yang ditawarkan dalam program
+   */
   public void help() {
     System.out.print("\n");
     System.out.print(" Berikut adalah command yang disediakan di program ini.\n\n");
@@ -74,6 +90,10 @@ public class CommandProcessor {
     System.out.print("                 pernah dilakukan\n\n");
     System.out.print(" Exit          : Keluar dari command\n\n");
   }
+  /**
+   * Mengembalikan predikat apakah sebuah string termasuk command yang disediakan
+   * @return true bila command, false sebaliknya
+   */
   public boolean isCommand() {
     StringTokenizer tokenizer = new StringTokenizer(command);
     String firstWord = tokenizer.nextToken();

@@ -6,15 +6,24 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * UndoCommand adalah kelas yang bertanggungjawab mengeksekusi perintah Undo
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class UndoCommand implements CommandInterface {
+  /**
+   * Default konstruktor
+   */
   public UndoCommand() {
     
   }
+  /**
+   * Method untuk eksekusi
+   * @param n parameter integer command
+   */
   @Override
   public void execute(int n) {
-    System.out.println("Proses Undo " + n);
+    System.out.print("Proses Undo " + n + "\n");
   }
 }

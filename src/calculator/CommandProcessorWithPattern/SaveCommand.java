@@ -6,15 +6,24 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * SaveCommand adalah kelas yang bertanggungjawab mengeksekusi perintah Save
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class SaveCommand implements CommandInterface {
+  /**
+   * Default konstruktor
+   */
   public SaveCommand() {
     
   }
+  /**
+   * Method untuk eksekusi
+   * @param n parameter integer command
+   */
   @Override
   public void execute(int n) {
-    System.out.println("Proses Save");
+    System.out.print("Proses Save\n");
   }
 }

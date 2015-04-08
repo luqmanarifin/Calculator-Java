@@ -6,15 +6,24 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * ShowMemCommand adalah kelas yang bertanggungjawab mengeksekusi perintah Show Mem
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class ShowMemCommand implements CommandInterface {
+  /**
+   * Default konstruktor
+   */
   public ShowMemCommand() {
     
   }
+  /**
+   * Method untuk eksekusi
+   * @param n parameter integer command
+   */
   @Override
   public void execute(int n) {
-    System.out.println("Proses ShowMem " + n);
+    System.out.print("Proses ShowMem " + n + "\n");
   }
 }

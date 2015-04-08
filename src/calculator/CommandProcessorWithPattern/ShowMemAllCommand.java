@@ -6,15 +6,24 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * ShowMemAllCommand adalah kelas yang bertanggungjawab mengeksekusi perintah Show All
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class ShowMemAllCommand implements CommandInterface {
+  /**
+   * Default konstruktor
+   */
   public ShowMemAllCommand() {
     
   }
+  /**
+   * Method untuk eksekusi
+   * @param n parameter integer command
+   */
   @Override
   public void execute(int n) {
-    System.out.println("Proses Show All");
+    System.out.print("Proses Show All\n");
   }
 }

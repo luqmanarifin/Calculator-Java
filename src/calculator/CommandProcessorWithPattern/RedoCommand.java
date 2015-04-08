@@ -6,15 +6,24 @@
 package calculator.CommandProcessorWithPattern;
 
 /**
- *
+ * RedoCommand adalah kelas yang bertanggungjawab mengeksekusi perintah Redo
+ * 
  * @author Luqman A. Siswanto
+ * @version 1.0
  */
 public class RedoCommand implements CommandInterface {
+  /**
+   * Default konstruktor
+   */
   public RedoCommand() {
     
   }
+  /**
+   * Method untuk eksekusi
+   * @param n parameter integer command
+   */
   @Override
   public void execute(int n) {
-    System.out.println("Proses Redo " + n);
+    System.out.print("Proses Redo " + n + "\n");
   }
 }

@@ -231,7 +231,7 @@ public class LogicTest {
         System.out.println("toString");
         int n = 0;
         Logic instance = new Logic();
-        String expResult = "FALSE";
+        String expResult = "false";
         String result = instance.toString(n);
         assertEquals(expResult, result);
     }
@@ -243,7 +243,7 @@ public class LogicTest {
     public void testToString_0args() {
         System.out.println("toString");
         Logic instance = new Logic();
-        String expResult = "FALSE";
+        String expResult = "false";
         String result = instance.toString();
         assertEquals(expResult, result);
     }

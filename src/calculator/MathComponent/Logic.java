@@ -23,7 +23,7 @@ public class Logic extends MathComponent {
   *
   **/
   public Logic() {
-    super("FALSE");
+    super("false");
     logic = 0;
   }
 
@@ -41,7 +41,7 @@ public class Logic extends MathComponent {
   * @param b - boolean berisi nilai logika (0 atau 1).
   **/
   public Logic(boolean b) {
-    super(b ? "TRUE" : "FALSE");
+    super(b ? "true" : "false");
     logic = b ? 1 : 0;
   }
 
@@ -174,14 +174,14 @@ public class Logic extends MathComponent {
   public String toString(int n) {
     String ret;
     if(n >= 1)
-      ret = (String) "TRUE";
+      ret = (String) "true";
     else
-     ret = (String) "FALSE";
+     ret = (String) "false";
     return ret;
   }
   @Override
   public String toString() {
-    return (logic >= 1) ? "TRUE" : "FALSE";
+    return (logic >= 1) ? "true" : "false";
   }
   
   /* Data Member */

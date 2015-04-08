@@ -34,12 +34,6 @@ public class EquationPrefixConverter {
     while(!stackMathComponents_.empty()) {
       MathComponent t = stackMathComponents_.pop();
       if(t.getIsOperator()) {
-        /*
-        if(t.getSymComp().equals("not")) {
-          char c = stemp[0];
-          if((c < '0' || c > '9') && (!stemp.equals("not") || stemp.size()<=1) && (c != '(') && ((c < 'a') || (c > 'z')) && ((c < 'A') || (c > 'Z')) && (c != '~'))
-            throw(EquationException(EquationException::IllegalUsingOperator));
-        } */
         if(t.getSymComp().equals(")")) {
           opr.push(t);
           continue;

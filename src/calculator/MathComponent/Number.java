@@ -43,8 +43,8 @@ public class Number extends MathComponent {
 				_nilaiFloat = Float.parseFloat(s);
 			}
 		}
-            }
-        }
+  }
+}
 	
 	// method
 	public Logic isLess (Number N) {
@@ -146,6 +146,8 @@ public class Number extends MathComponent {
                             if(s.charAt(i+1) == 'X' || s.charAt(i+1) == 'V'){
 
                             }
+                            else
+                              satuan++;
                         }
                         else satuan++;
                 }
@@ -165,6 +167,7 @@ public class Number extends MathComponent {
                             if(s.charAt(i+1) == 'L' || s.charAt(i+1) == 'C'){
 
                             }
+                            else puluhan+=10;
                         }
                         else puluhan+=10;
                     }
@@ -188,6 +191,7 @@ public class Number extends MathComponent {
                             if(s.charAt(i+1) == 'D' || s.charAt(i+1) == 'M'){
 
                             }
+                            else ratusan += 100;
                         }
                         else ratusan += 100;
                     }

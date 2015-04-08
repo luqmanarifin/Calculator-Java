@@ -46,7 +46,7 @@ public class Equation {
     
     strEq_        = "";
     result_       = "";
-    stackMathComponents_ = new Stack<MathComponent>();
+    stackMathComponents_ = new Stack<>();
     modeEquation_ = EQUATION_INFIX;
   }
   /**
@@ -58,7 +58,7 @@ public class Equation {
   public Equation(String strEqin) {
     strEq_               = strEqin;
     result_              = "";
-    stackMathComponents_ = new Stack<MathComponent>();
+    stackMathComponents_ = new Stack<>();
     createMathComponentsFromString();
     if(modeEquation_ == EQUATION_INFIX)
       EquationPrefixConverter.convertFromInfix(stackMathComponents_);
@@ -67,54 +67,43 @@ public class Equation {
     modeEquation_ = EQUATION_PREFIX;
   }
   /**
-  *  Mendapatkan hasil perhitungan dari ekspresi
-  * 
-  * @return String _result - String yang merepresentasikan hasil perhitungan
-  **/
-  public String getResult() {
+   *  Mendapatkan hasil perhitungan dari ekspresi
+   * 
+   * @return String _result - String yang merepresentasikan hasil perhitungan
+   * @throws calculator.Equation.EquationException
+   **/
+  public String getResult() throws EquationException {
     if(result_.length() < 1) {
-      try {
         solve();
-      } catch(Exception exception) {
-        throw exception;
-      }
     }
     return result_;
   }
   /**
-  *  Menghitung hasil ekspresi matematika tersebut
-  *        Prekondisi : ekspresi dalam bentuk prefiks
-  */
-  public void solve() {
+   *  Menghitung hasil ekspresi matematika tersebut
+   *        Prekondisi : ekspresi dalam bentuk prefiks
+   * @throws calculator.Equation.EquationException
+   */
+  public void solve() throws EquationException {
     Logic  operanLogic1,  operanLogic2;
     Number operanNumber1, operanNumber2;
     
     MathComponent operator;
-    Stack<MathComponent> res = new Stack<MathComponent>();
-//    if(stackMathComponents_.empty()) {
-//      throw new EquationException(EquationException.EmptyEquation);
-//    }
-    /*
-    System.out.println(stackMathComponents_.size());
-    while(!stackMathComponents_.empty()) {
-      res.push(stackMathComponents_.pop());
+    Stack<MathComponent> res = new Stack<>();
+    if(stackMathComponents_.empty()) {
+      throw new EquationException(EquationException.EmptyEquation);
     }
-    while(!res.empty()) {
-      MathComponent m = res.pop();
-      System.out.println("isi stack " + m.getSymComp());
-      stackMathComponents_.push(m);
-    }
-    */
+    
+    
     while(!stackMathComponents_.empty()) {
       operator = stackMathComponents_.pop();
       if(operator.getIsOperator()) {
-//        if(res.empty())
-//          throw new EquationException(EquationException.IllegalUsingOperator);
+        if(res.empty())
+          throw new EquationException(EquationException.IllegalUsingOperator);
         if(operator.getPrior() <= 6) { // hitung logika
           operanLogic1 = (Logic)res.pop();
           
-//          if(operanLogic1.getPrior() != 0)
-//            throw new EquationException(EquationException.IllegalUsingOperator);
+          if(operanLogic1.getPrior() != 0)
+            throw new EquationException(EquationException.IllegalUsingOperator);
           
           if(operator.getSymComp().equals("not")) {// kasus operator unary negasi
             operanLogic2 = operanLogic1.notOperation();
@@ -122,16 +111,14 @@ public class Equation {
             continue;
           }
           
-//          if(res.empty())
-//            throw new EquationException(EquationException.IllegalUsingOperator);
+          if(res.empty())
+            throw new EquationException(EquationException.IllegalUsingOperator);
           operanLogic2 = (Logic)res.pop();
-//          if(operanLogic2.getPrior() != 0)
-//            throw new EquationException(EquationException.IllegalUsingOperator);
-//          try {
-            operanLogic1 = CalculateLogic(operanLogic1, operator, operanLogic2);
-//          } catch(Exception e) {  
-//            throw e;
-//          }
+          if(operanLogic2.getPrior() != 0)
+            throw new EquationException(EquationException.IllegalUsingOperator);
+          
+          operanLogic1 = CalculateLogic(operanLogic1, operator, operanLogic2);
+          
           res.push((MathComponent)operanLogic1);
         }
         else if (operator.getPrior() <= 8) {
@@ -139,51 +126,44 @@ public class Equation {
           if(temp.getPrior() == 0) { // relational operation for logic
             operanLogic1 = (Logic)res.pop();
             
-//            if(res.empty())
-//              throw new EquationException(EquationException.IllegalUsingOperator);
+            if(res.empty())
+              throw new EquationException(EquationException.IllegalUsingOperator);
             operanLogic2 = (Logic)res.pop();
-//            if(operanLogic2.getPrior() != 0)
-//              throw new EquationException(EquationException.IllegalUsingOperator);
-//            try {
-              operanLogic1 = CalculateLogic(operanLogic1, operator, operanLogic2);  
-//            } catch(Exception e) {  
-//              throw e;
-//            }
+            if(operanLogic2.getPrior() != 0)
+              throw new EquationException(EquationException.IllegalUsingOperator);
+           
+            operanLogic1 = CalculateLogic(operanLogic1, operator, operanLogic2);  
+           
           }
           else { // relational operation for number
             operanNumber1 = (Number)res.pop();
-//            if(operanNumber1.getPrior() != 1)
-//              throw new EquationException(EquationException.IllegalUsingOperator);
+            if(operanNumber1.getPrior() != 1)
+              throw new EquationException(EquationException.IllegalUsingOperator);
             
-//            if(res.empty())
-//              throw new EquationException(EquationException.IllegalUsingOperator);
+            if(res.empty())
+              throw new EquationException(EquationException.IllegalUsingOperator);
             operanNumber2 = (Number)res.pop();
-//            if(operanNumber2.getPrior() != 1)
-//              throw new EquationException(EquationException.IllegalUsingOperator);
-//            try {
-              operanLogic1 = CalculateNumberToLogic(operanNumber1, operator, operanNumber2);  
-//            } catch(Exception e) {
-//              throw e;
-//            }
+            if(operanNumber2.getPrior() != 1)
+              throw new EquationException(EquationException.IllegalUsingOperator);
+            
+            operanLogic1 = CalculateNumberToLogic(operanNumber1, operator, operanNumber2);  
+            
           }
           res.push((MathComponent)operanLogic1);
         }
         else { // hitung number
           operanNumber1 = (Number)res.pop();
-//          if(operanNumber1.getPrior() != 1)
-//            throw new EquationException(EquationException.IllegalUsingOperator);
+          if(operanNumber1.getPrior() != 1)
+            throw new EquationException(EquationException.IllegalUsingOperator);
           
-//          if(res.empty())
-//            throw new EquationException(EquationException.IllegalUsingOperator);
+          if(res.empty())
+            throw new EquationException(EquationException.IllegalUsingOperator);
           operanNumber2 = (Number)res.pop();
-//          if(operanNumber2.getPrior() != 1)
-//            throw new EquationException(EquationException.IllegalUsingOperator);
+          if(operanNumber2.getPrior() != 1)
+            throw new EquationException(EquationException.IllegalUsingOperator);
           
-//          try{
-            operanNumber1 = CalculateNumber(operanNumber1, operator, operanNumber2);
-//          }catch(Exception e) { 
-//            throw e;
-//          }
+          operanNumber1 = CalculateNumber(operanNumber1, operator, operanNumber2);
+          
           res.push((MathComponent)operanNumber1);
         }
       }
@@ -191,8 +171,8 @@ public class Equation {
           res.push(operator);
     }
     
-    //if(res.size() != 1)
-      //throw new EquationException(EquationException.IllegalUsingOperator);
+    if(res.size() != 1)
+      throw new EquationException(EquationException.IllegalUsingOperator);
     stackMathComponents_.push((MathComponent)res.peek());
     result_ = res.peek().toString();
   }
@@ -204,13 +184,13 @@ public class Equation {
   * @param Number operan2 - pointer pada operan bilangan kedua
   * @return Number ret - pointer pada bilangan hasil dari operasi
   */
-  private Number CalculateNumber(Number operan1, MathComponent operator, Number operan2) {
+  private Number CalculateNumber(Number operan1, MathComponent operator, Number operan2) throws EquationException {
     Number ret;
     if(operator.getSymComp().equals("*"))
       ret = operan1.kali(operan2);
     else if(operator.getSymComp().equals("/")) {
-//      if(operan2.getNilai() == 0)
-//        throw new EquationException(EquationException.DivideByZero);
+      if(operan2.getNilai() == 0)
+        throw new EquationException(EquationException.DivideByZero);
       ret = operan1.bagi(operan2);
     }
     else if(operator.getSymComp().equals("+"))
@@ -218,22 +198,18 @@ public class Equation {
     else if(operator.getSymComp().equals("-"))
       ret = operan1.minus(operan2);
     else if(operator.getSymComp().equals("mod")) {
-//      if(operan2.getNilai() <= 0)
-//        throw new EquationException(EquationException.ModuloByNonPositif);
+      if(operan2.getNilai() <= 0)
+        throw new EquationException(EquationException.ModuloByNonPositif);
       ret = operan1.mod(operan2);
     }
     else if(operator.getSymComp().equals("div")) {
-//      if(operan2.getNilai() == 0)
-//        throw new EquationException(EquationException.DivideByZero);
+      if(operan2.getNilai() == 0)
+        throw new EquationException(EquationException.DivideByZero);
       ret = operan1.div(operan2);
     }
     else
-      ret = new Number();
-//      throw new EquationException(EquationException.UndefinedOperator);
-    /*
-    if(_modeNumber == Extension.RomawiMode && (ret.getNilai() < 1 || ret.getNilai() > 3999))
-      throw new EquationException(EquationException.OutOfBoundRomawi);
-    */
+      throw new EquationException(EquationException.UndefinedOperator);
+ 
     return ret;
   }
   /*
@@ -244,7 +220,7 @@ public class Equation {
   * @param Logic operan2 - pointer pada operan logika kedua
   * @return Logic ret - pointer pada hasil logika dari operasi
   */
-  private Logic CalculateLogic(Logic operan1, MathComponent operator, Logic operan2) {
+  private Logic CalculateLogic(Logic operan1, MathComponent operator, Logic operan2) throws EquationException {
     Logic ret;
     if(operator.getSymComp().equals("and"))
       ret = operan1.andOperation(operan2);
@@ -265,8 +241,7 @@ public class Equation {
     else if(operator.getSymComp().equals("<>"))
       ret = operan1.isNotEqual(operan2);
     else
-      ret = new Logic();
-//        throw new EquationException(EquationException.UndefinedOperator);
+        throw new EquationException(EquationException.UndefinedOperator);
     return ret;
   }
   /*
@@ -278,7 +253,7 @@ public class Equation {
   * @param Number operan2 - pointer pada operan bilangan kedua
   * @return Logic ret - pointer pada hasil logika dari operasi
   */
-  private Logic CalculateNumberToLogic(Number operan1, MathComponent operator, Number operan2) {
+  private Logic CalculateNumberToLogic(Number operan1, MathComponent operator, Number operan2) throws EquationException {
     Logic ret;
     if(operator.getSymComp().equals("<"))
       ret = operan1.isLess(operan2);
@@ -293,8 +268,7 @@ public class Equation {
     else if(operator.getSymComp().equals("<>"))
       ret = operan1.isNotEqual(operan2);
     else
-      ret = new Logic();
-//      throw new EquationException(EquationException.UndefinedOperator);
+      throw new EquationException(EquationException.UndefinedOperator);
     return ret;
   }
   /*
@@ -383,7 +357,7 @@ public class Equation {
           else
             stackMathComponents_.push(new Number(temp));
         }
-        for(k++; k < s[i].length(); k++)
+        for(; k < s[i].length(); k++)
           stackMathComponents_.push(new MathComponent(")"));
       }
     }

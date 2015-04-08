@@ -23,18 +23,7 @@ public class LoggerTest {
   
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-  
-  public LoggerTest() {
-  }
-  
-  @BeforeClass
-  public static void setUpClass() {
-  }
-  
-  @AfterClass
-  public static void tearDownClass() {
-  }
-  
+
   @Before
   public void setUp() {
     System.setOut(new PrintStream(outContent));
@@ -45,6 +34,17 @@ public class LoggerTest {
   public void tearDown() {
     System.setOut(null);
     System.setErr(null);
+  }
+  
+  public LoggerTest() {
+  }
+  
+  @BeforeClass
+  public static void setUpClass() {
+  }
+  
+  @AfterClass
+  public static void tearDownClass() {
   }
 
   /**
@@ -87,5 +87,13 @@ public class LoggerTest {
     instance.showMemAll();
     Assert.assertEquals("Proses Show All\n", outContent.toString());
   }
-  
+  /**
+   * Test of saveToFile method, of class Saver.
+   */
+  @Test
+  public void testSaveToFile() {
+    Logger instance = new Logger();
+    instance.saveToFile();
+    Assert.assertEquals("Proses Save\n" , outContent.toString());
+  }
 }

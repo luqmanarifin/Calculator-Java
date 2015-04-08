@@ -46,4 +46,10 @@ public class Logger {
   public void showMemAll() {
     System.out.print("Proses Show All\n");
   }
+  /**
+   * Melakukan eksekusi perintah Save
+   */
+  public void saveToFile() {
+    System.out.print("Proses Save\n");
+  }
 }

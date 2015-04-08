@@ -16,7 +16,6 @@ import java.util.*;
  */
 public class CommandProcessor {
   private String sentence;
-  private Saver saver;
   private Logger logger;
   static final String[] commands = {"Save",
                                     "Redo",
@@ -28,7 +27,6 @@ public class CommandProcessor {
    * Konstruktor default CommandProcessor
    */
   public CommandProcessor() {
-    saver = new Saver();
     logger = new Logger();
     sentence = "";
   }
@@ -37,7 +35,6 @@ public class CommandProcessor {
    * @param str String yang akan diproses CommandProcessor
    */
   public CommandProcessor(String str) {
-    saver = new Saver();
     logger = new Logger();
     sentence = str;
   }
@@ -65,7 +62,7 @@ public class CommandProcessor {
    * Melakukan command save
    */
   public void save() {
-    saver.saveToFile();
+    logger.saveToFile();
   }
   /**
    * Melakukan command Undo

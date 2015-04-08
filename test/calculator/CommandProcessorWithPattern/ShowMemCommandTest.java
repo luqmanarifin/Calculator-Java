@@ -20,6 +20,21 @@ import static org.junit.Assert.*;
  */
 public class ShowMemCommandTest {
   
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+
+  @Before
+  public void setUp() {
+    System.setOut(new PrintStream(outContent));
+    System.setErr(new PrintStream(errContent));
+  }
+  
+  @After
+  public void tearDown() {
+    System.setOut(null);
+    System.setErr(null);
+  }
+  
   public ShowMemCommandTest() {
   }
   
@@ -30,26 +45,15 @@ public class ShowMemCommandTest {
   @AfterClass
   public static void tearDownClass() {
   }
-  
-  @Before
-  public void setUp() {
-  }
-  
-  @After
-  public void tearDown() {
-  }
 
   /**
    * Test of execute method, of class ShowMemCommand.
    */
   @Test
   public void testExecute() {
-    System.out.println("execute");
-    int n = 0;
     ShowMemCommand instance = new ShowMemCommand();
-    instance.execute(n);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    instance.execute(5);
+    Assert.assertEquals("Proses ShowMem 5\n", outContent.toString());
   }
   
 }

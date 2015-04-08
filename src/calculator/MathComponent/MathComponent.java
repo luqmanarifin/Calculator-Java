@@ -1,45 +1,74 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package calculator.MathComponent;
 
 import java.io.*;
 import java.lang.*;
 
-/**
- *
- * @author Ahmad Darmawan
+/*
+ * @class MathComponent
+ * @author Ahmad Darmawan (13513096)
+ * @version 1.0 
+ * @brief Kelas MathComponent menyimpan operator dan operan.
  */
+
 public class MathComponent {
+  /* Attribute kumpulan operator number */
   public static final String[] numberOperator = {"mod", "div",   "*",   "/", "+",  "-"};
+  /* Attribute kumpulan operator relational */
   public static final String[] relationalOperator = {"<",  "<=",   ">",  ">=", "=", "<>"};
+  /* Attribute kumpulan operator logic */
   public static final String[] logicOperator = {"not", "and", "xor", "or"};
+  
+  /**
+  * @brief Konstruktor kelas MathComponent dengan Parameter.
+  * @param S - String yang menjadi anggota MathComponent.
+  **/
+  
   public MathComponent(String S) {
     symComp = S;
     isOperator = identifyComp();
     identifyPrior();
   }
 
+  /**
+  * @brief Getter untuk mendapatkan nilai _symToken.
+  * @return symComp - string nilai _symToken.
+  **/
   public String getSymComp() {
     return symComp;
   }
 
+  /**
+  * @brief Getter untuk mendapatkan nilai _isOperator.
+  * @return bool - boolean nilai _isOperator.
+  **/
   public boolean getIsOperator() {
     return isOperator;
   }
 
+  /**
+  * @brief Setter untuk mengubah nilai _symToken.
+  * @brief [I.S] String S merupakan simbol MathComponent yang valid.
+  * @brief [F.S] Simbol MathComponent akan terset dengan S.
+  * @param S - nilai _symToken yang akan dimasukkan.
+  **/
   public void setSymComp(String S) {
     symComp = S;
     isOperator = identifyComp();
     identifyPrior();
   }
 
+  /**
+  * @brief Getter untuk mendapatkan nilai _prior.
+  * @return i - integer nilai _prior.
+  **/
   public int getPrior() {
     return prior;
   }
 
+  /**
+  * @brief Set nilai _isOperator berdasarkan _symToken.
+  * @return bool - nilai _isOperator
+  **/
   private boolean identifyComp() {
     for(String s : numberOperator)
       if(symComp.equals(s))
@@ -55,6 +84,11 @@ public class MathComponent {
     return false;
   }
 
+  /**
+  * @brief Set nilai _prior berdasarkan _symToken (untuk operator).
+  * @brief [I.S] Token memiliki simbol MathComponent yang valid.
+  * @brief [F.S] Priority MathComponent akan terset berdasarkan simbol MathComponent.
+  **/
   private void identifyPrior() {
     if (isOperator) {
     /* Prioritas operator relatif berdasarkan http://en.wikipedia.org/wiki/Order_of_operations */

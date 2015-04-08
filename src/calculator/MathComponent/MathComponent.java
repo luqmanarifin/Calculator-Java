@@ -10,7 +10,7 @@ import java.lang.*;
 
 /**
  *
- * @author Luqman A. Siswanto
+ * @author Ahmad Darmawan
  */
 public class MathComponent {
   public static final String[] numberOperator = {"mod", "div",   "*",   "/", "+",  "-"};

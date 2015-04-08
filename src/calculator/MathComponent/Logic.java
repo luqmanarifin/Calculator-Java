@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  *
- * @author Luqman A. Siswanto
+ * @author Ahmad Darmawan
  */
 
 public class Logic extends MathComponent {
@@ -90,10 +90,8 @@ public class Logic extends MathComponent {
   @Override
   public String toString() {
     return (logic >= 1) ? "TRUE" : "FALSE";
-  }/*
-  public static void main(String[] args) {
-    Logic L = new Logic(true);
-    System.out.println(L.notOperation());
-  }*/
+  }
+  
+  /* Data Member */
   private int logic;
 }

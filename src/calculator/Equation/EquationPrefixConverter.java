@@ -81,6 +81,26 @@ public class EquationPrefixConverter {
   public static void convertFromPostfix(Stack<MathComponent> _stackToken) {
     /* mengubah ekspresi postfix menjadi prefix */
     Stack<MathComponent> pre = new Stack<MathComponent>(), stk = new Stack<MathComponent>();
+    // Mengubah not menjadi xor true
+    while(!_stackToken.empty()) {
+      stk.push(_stackToken.pop());
+    }
+    int nNot = 0;
+    while(!stk.empty()) {
+      MathComponent mc = stk.pop();
+      if(mc.getSymComp().equals("not"))
+        nNot++;
+      else {
+        _stackToken.push(mc);
+        if(mc.getPrior() == 0) {
+          while(nNot > 0) {
+            nNot--;
+            _stackToken.push(new Logic("true"));
+            _stackToken.push(new MathComponent("xor"));
+          }
+        }
+      }
+    }
     MathComponent flag = new MathComponent("#");
     while(!_stackToken.empty()) {  
       if(_stackToken.peek().getIsOperator())

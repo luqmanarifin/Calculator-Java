@@ -29,7 +29,7 @@ public class Number extends MathComponent {
             super(s);
             StringBuffer str = new StringBuffer(".");
             isFloat = s.contains(str);
-            isRomawi = s.matches("[0-9]+");
+            isRomawi = !s.matches("(\\+|-)?[0-9]+(.[0-9]+)?");
             if(!this.getIsOperator()) {
                 if(isRomawi){
 			_nilaiInt = toInt(s);
@@ -116,11 +116,11 @@ public class Number extends MathComponent {
 	public Number mod (Number _N){
 		this.isFloat |= _N.isFloat;
 		if(!this.isFloat){
-			this._nilaiInt = this._nilaiInt + _N._nilaiInt;
-			this._nilaiFloat = this._nilaiFloat + _N._nilaiFloat;
+			this._nilaiInt = (((this._nilaiInt % _N._nilaiInt)+_N._nilaiInt) % _N._nilaiInt);
+			this._nilaiFloat = (((this._nilaiFloat % _N._nilaiFloat)+_N._nilaiFloat) % _N._nilaiFloat);
 		}
 		else{
-			this._nilaiFloat = this._nilaiFloat + _N._nilaiFloat;
+			this._nilaiFloat = (((this._nilaiFloat % _N._nilaiFloat)+_N._nilaiFloat) % _N._nilaiFloat);
 		}
 		return this;
 	}
@@ -136,51 +136,87 @@ public class Number extends MathComponent {
 		}
 	}
 	int toInt(String s){
-		int satuan = 0;
-		int puluhan = 0;
-		int ratusan = 0;
-		int ribuan = 0;
-		for (int i = 0; i <= s.length() - 1; i++){
-			if (s.charAt(i) == 'I'){
-				if(i<s.length() - 1 && (s.charAt(i+1) == 'X' || s.charAt(i+1) == 'V')){
-				
-				}
-				else satuan++;
-			}
-			if (s.charAt(i) == 'V'){
-				if (s.charAt(i-1) == 'I') satuan += 4;
-				else satuan += 5;
-			}
-			if (s.charAt(i) == 'X'){
-				if(s.charAt(i-1) == 'I') puluhan+=9;
-				else if(i<s.length() - 1 && (s.charAt(i+1) == 'L' || s.charAt(i+1) == 'C')){
-				
-				}
-				else puluhan+=10;
-			}
-			if (s.charAt(i) == 'L'){
-				if(s.charAt(i-1) == 'X') puluhan+=40;
-				else puluhan+=50;
-			}
-			if (s.charAt(i) == 'C'){
-				if(s.charAt(i-1) == 'X') ratusan+=90;
-				else if(i<s.length() - 1 && (s.charAt(i+1) == 'D' || s.charAt(i+1) == 'M')){
-				
-				}
-				else ratusan+=100;
-			}
-			if (s.charAt(i+1) == 'D'){
-				if(s.charAt(i-1) == 'C') ratusan += 400;
-				else ratusan += 500;
-			}
-			if (s.charAt(i) == 'M'){
-				if(s.charAt(i-1) == 'C') ribuan+=900;
-				else ribuan+=1000;
-			}
-		}
-		int nilai = ribuan + ratusan + puluhan + satuan;
-		return nilai;
-	}
+            int satuan = 0;
+            int puluhan = 0;
+            int ratusan = 0;
+            int ribuan = 0;
+            for (int i = 0; i < s.length(); i++){
+                if (s.charAt(i) == 'I'){
+                        if(i<s.length() - 1){
+                            if(s.charAt(i+1) == 'X' || s.charAt(i+1) == 'V'){
+
+                            }
+                        }
+                        else satuan++;
+                }
+                if (s.charAt(i) == 'V'){
+                    if(i != 0){
+                        if (s.charAt(i-1) == 'I') satuan += 4;
+                        else satuan += 5;
+                    }
+                    else{
+                        satuan += 5;
+                    }
+                }
+                if (s.charAt(i) == 'X'){
+                    if(i != 0){
+                        if(s.charAt(i-1) == 'I') puluhan+=9;
+                        else if(i<s.length() - 1){
+                            if(s.charAt(i+1) == 'L' || s.charAt(i+1) == 'C'){
+
+                            }
+                        }
+                        else puluhan+=10;
+                    }
+                    else{
+                        puluhan += 10;
+                    }
+                }
+                if (s.charAt(i) == 'L'){   
+                    if(i != 0){
+                        if(s.charAt(i-1) == 'X') puluhan+=40;
+                        else puluhan+=50;
+                    }
+                    else{
+                        puluhan += 50;
+                    }
+                }
+                if (s.charAt(i) == 'C'){
+                    if(i != 0){
+                        if(s.charAt(i-1) == 'X') ratusan+=90;
+                        else if(i<s.length() - 1){
+                            if(s.charAt(i+1) == 'D' || s.charAt(i+1) == 'M'){
+
+                            }
+                        }
+                        else ratusan += 100;
+                    }
+                    else{
+                        ratusan += 100;
+                    }
+                }
+                if (s.charAt(i) == 'D'){
+                    if(i != 0){
+                        if(s.charAt(i-1) == 'C') ratusan += 400;
+                        else ratusan += 500;
+                    }
+                    else{
+                        ratusan += 500;
+                    }
+                }
+                if (s.charAt(i) == 'M'){
+                    if(i != 0){
+                        if(s.charAt(i-1) == 'C') ribuan+=900;
+                        else ribuan += 1000;
+                    }
+                    else{
+                        ribuan += 1000;
+                    }
+                }
+            }
+            int nilai = ribuan + ratusan + puluhan + satuan;
+            return nilai;
+        }
   @Override
 	public String toString() {
 		String ret;
